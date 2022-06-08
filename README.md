@@ -5,12 +5,14 @@ A simple hugo module to help you add [Aplayer](https://aplayer.js.org/) in your 
 
 ## Get Started
 
-Simple installation using hugo cli.
+Init your project as a hugo module if not already.
 
 ```
-hugo mod init github.com/Runzelee/aplayer-hugo-module
+hugo mod init <your_repo_url>
 ```
-Check your site config to make sure this module is already in use. The following is an example of yaml, and the same is true for toml and json.
+
+Add this module to site config. The following is an example of yaml, and the same is true for toml and json.
+
 ```
 module:
   imports:
