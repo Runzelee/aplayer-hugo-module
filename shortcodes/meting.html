@@ -1,0 +1,119 @@
+<!-- require APlayer -->
+{{ with .Params.Aplayer.style_cdn }}
+    <link rel="stylesheet" href="{{ . | safeURL }}">
+{{ else }}
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.css">
+{{ end }}
+
+{{ with .Params.Aplayer.cdn }}
+    <script src="{{ . | safeURL }}"></script>
+{{ else }}
+    <script src="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.js"></script>
+{{ end }}
+
+<!-- require MetingJS -->
+{{ with .Params.APlayer.meting_cdn }}
+    <script src="{{ . | safeURL }}"></script>
+{{ else }}
+    <script src="https://cdn.jsdelivr.net/npm/meting@2/dist/Meting.min.js"></script>
+{{ end }}
+
+<div id="aplayer">
+    <meting-js 
+    {{ with .Get "id" }}
+        id="{{ . }}" 
+    {{ end }}
+
+    {{ with .Get "server" }}
+        server="{{ . }}"
+    {{ end }}
+
+    {{ with .Get "type" }} 
+        type="{{ . }}"
+    {{ end }}
+
+    {{ with .Get "auto" }} 
+        auto="{{ . }}"
+    {{ end }}
+
+    {{ with .Get "fixed" }}    
+        fixed="{{ . }}"
+    {{ end }}
+
+    {{ with .Get "mini" }} 
+        mini="{{ . }}"
+    {{ end }}
+
+    {{ with .Get "autoplay" }}
+        autoplay="{{ . }}"
+    {{ end }}
+
+    {{ with .Get "theme" }}
+        theme="{{ . }}"
+    {{ end }}
+
+    {{ with .Get "loop" }}
+        loop="{{ . }}"
+    {{ end }}
+
+    {{ with .Get "order" }}
+        order="{{ . }}"
+    {{ end }}
+
+    {{ with .Get "preload" }}
+        preload="{{ . }}"
+    {{ end }}
+
+    {{ with .Get "volume" }}
+        volume="{{ . }}"
+    {{ end }}
+
+    {{ with .Get "mutex" }}
+        mutex="{{ . }}"
+    {{ end }}
+
+    {{ with .Get "lrc-type" }}
+        lrc-type="{{ . }}"
+    {{ end }}
+
+    {{ with .Get "lrc-folded" }}
+        list-folded="{{ . }}"
+    {{ end }}
+
+    {{ with .Get "list-max-height" }}
+        list-max-height="{{ . }}"
+    {{ end }}
+
+    {{ with .Get "storage-name" }}
+        storage-name="{{ . }}"
+    {{ end }}
+    
+    {{ with .Get "name" }}
+        name="{{ . }}"
+    {{ end }}
+
+    {{ with .Get "artist" }}
+        artist="{{ . }}"
+    {{ end }}
+
+    {{ with .Get "url" }}
+        url="{{ . }}"
+    {{ end }}
+
+    {{ with .Get "cover" }}
+        cover="{{ . }}"
+    {{ end }} >
+    </meting-js>
+</div>
+
+<script>
+    let ap = null;
+    Object.defineProperty(document.querySelector('meting-js'), "aplayer", {
+        set: aplayer => {
+            ap = aplayer
+
+            // You can call Aplayer APIs directly in your inner shortcodes.
+            {{ .Inner | safeJS }}
+        }
+    });
+</script>
